@@ -3,20 +3,45 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.Extensions.Options
 
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path)?"~/" : $"~{Context.Request.Path.Value}";
 }
+<style>
+    #selectLanguage button {
+        background: none !important;
+        border: none;
+        font: inherit;
+        /*border is optional*/
+        cursor: pointer;
+        color: #9d9d9d;
+        padding: 15px;
+        line-height: 20px;
+        position: relative;
+        background-color: transparent;
+    }
+</style>
 
 <div>
-    <form asp-controller="Home" asp-action="SetLanguage" method="post" asp-route-returnUrl="@returnUrl">
+    <form  class="nav form-horizontal" id="selectLanguage" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post" role="form">
         <ul class="col-md-3 nav navbar-nav">
             <li>
-                <a name="culture" value="en-US" onchange="this.form.submit();">English</a>
+                <button type="submit" name="culture" value="en-US">
+                    English
+                </button>
             </li>
             <li>
-                <a name="culture" value="vi-VN" onchange="this.form.submit();">Vietnamese</a>
+                <button type="submit" name="culture" value="vi-VN">
+                    Vietnamese
+                </button>
             </li>
         </ul>
     </form>
+    
 </div>

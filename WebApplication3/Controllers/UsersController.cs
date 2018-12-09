@@ -14,13 +14,10 @@ namespace WebApplication3.Controllers
     {
         private readonly IStringLocalizer<UsersController> _localizer;
         private readonly WebApplication3Context _context;
-        public UsersController(IStringLocalizer<UsersController> localizer)
-        {
-            _localizer = localizer;
-        }
-        public UsersController(WebApplication3Context context)
+        public UsersController(WebApplication3Context context, IStringLocalizer<UsersController> localizer)
         {
             _context = context;
+            _localizer = localizer;
         }
 
         // GET: Users
