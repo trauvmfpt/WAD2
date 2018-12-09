@@ -40,3 +40,4 @@ C:\Users\admin\Desktop\WAD1\WebApplication3\WebApplication3\obj\Debug\netcoreapp
 C:\Users\admin\Desktop\WAD1\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.dll
 C:\Users\admin\Desktop\WAD1\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.pdb
 C:\Users\admin\Desktop\WAD1\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.csproj.CopyComplete
+C:\Users\admin\Desktop\WAD1\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_SelectLanguagePartial.g.cshtml.cs

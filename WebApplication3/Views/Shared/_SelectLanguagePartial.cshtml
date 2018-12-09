@@ -9,13 +9,14 @@
 }
 
 <div>
-    <ul class="nav navbar-nav navbar-right" asp-controller="Home" asp-action="SetLanguage" 
-        asp-route-returnUrl="@returnUrl" method="post">
-        <li name="culture" onchange="this.form.submit();" value="en-US">
-            <a>English</a>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@returnUrl" method="post" 
+                name="culture" value="en-US" onchange="this.form.submit();" role="form">English</a>
         </li>
-        <li name="culture" onchange="this.form.submit();" value="vi-VN">
-            <a>Vietnamese</a>
+        <li>
+            <a asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@returnUrl" method="post" 
+                name="culture" value="vi-VN" onchange="this.form.submit();" role="form">Vietnamese</a>
         </li>
     </ul>
 </div>
