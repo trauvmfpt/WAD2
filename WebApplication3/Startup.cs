@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace WebApplication3
 {
@@ -36,8 +38,7 @@ namespace WebApplication3
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization(); 
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix); 
 
             services.AddDbContext<WebApplication3Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WebApplication3Context")));
@@ -59,6 +60,21 @@ namespace WebApplication3
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            var supportedCultures = new[]
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("vi-VN"),
+                };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
